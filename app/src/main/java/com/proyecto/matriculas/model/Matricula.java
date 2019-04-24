@@ -1,4 +1,4 @@
-package com.alvar.pruebajson.model;
+package com.proyecto.matriculas.model;
 
 
 

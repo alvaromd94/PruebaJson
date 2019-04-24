@@ -1,4 +1,4 @@
-package com.alvar.pruebajson;
+package com.proyecto.matriculas;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.alvar.pruebajson.model.Matricula;
+import com.proyecto.matriculas.model.Matricula;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">PruebaJson</string>
+    <string name="txt_message">No Text Available</string>
+    <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
+    <string name="limpiar">Limpiar</string>
+    <string name="inicioSesion">Iniciar Sesión</string>
+    <string name="Login">Login</string>
 </resources>
