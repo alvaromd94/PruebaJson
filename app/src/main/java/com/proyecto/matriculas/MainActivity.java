@@ -23,7 +23,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String APIserver = "http://95.60.21.49:80/pmdm/";
+    private String APIserver = "http://192.168.1.85/pmdm/";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

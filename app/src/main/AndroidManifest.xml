@@ -25,6 +25,7 @@
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="ocr" />
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
     </application>
 
 </manifest>
