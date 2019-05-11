@@ -1,8 +1,12 @@
 package com.proyecto.matriculas;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.view.menu.MenuBuilder;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -26,5 +30,21 @@ public class MenuPrincipalActivity extends AppCompatActivity {
 
     public void clickEscanear(View view) {
         startActivity(new Intent(getApplicationContext(), CamaraActivity.class));
+    }
+    @SuppressLint("RestrictedApi")
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_volver, menu);
+        MenuBuilder m = (MenuBuilder) menu;
+        m.setOptionalIconsVisible(true);
+        return true;
+    }
+
+    @SuppressLint("NewApi")
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+        return false;
     }
 }

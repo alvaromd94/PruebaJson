@@ -14,6 +14,7 @@
     <string name="menuPrincipal">Menú Principal</string>
     <string name="camara">Analizando Matrículas</string>
     <string name="consulta">Consulta de Matrículas</string>
+    <string name="volver">Volver</string>
     <string-array name="spinnerAlerta">
         <item>@string/alertaUno</item>
         <item>@string/alertaDos</item>

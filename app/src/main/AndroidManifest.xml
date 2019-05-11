@@ -17,7 +17,7 @@
             android:label="@string/menuPrincipal"></activity>
         <activity android:name=".CamaraActivity"
             android:label="@string/camara"/>
-        <activity android:name=".MainActivity"
+        <activity android:name=".ConsultaActivity"
             android:label="@string/consulta"/>
         <activity android:name=".LoginActivity">
             <intent-filter>

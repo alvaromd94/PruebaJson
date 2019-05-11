@@ -21,14 +21,14 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class ConsultaActivity extends AppCompatActivity {
 
     private String APIserver = "http://192.168.1.135/pmdm/";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_consulta);
     }
 
     public void clicBuscar(View view) {
