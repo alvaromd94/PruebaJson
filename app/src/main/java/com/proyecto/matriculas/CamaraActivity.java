@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.widget.TextView;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
@@ -158,5 +159,9 @@ public class CamaraActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    public void clickLista(View view) {
+        startActivity(new Intent(getApplicationContext(), MatriculasActivity.class));
     }
 }
