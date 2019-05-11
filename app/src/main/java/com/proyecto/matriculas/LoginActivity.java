@@ -13,7 +13,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
     }
     public void cickInicio(View view) {
-        startActivity(new Intent(getApplicationContext(), CamaraActivity.class));
+        startActivity(new Intent(getApplicationContext(), MenuPrincipalActivity.class));
     }
 
     public void cickLimpiar(View view) {
