@@ -23,7 +23,7 @@ import java.util.List;
 
 public class ConsultaActivity extends AppCompatActivity {
 
-    private String APIserver = "https://proyectomatriculas.com/";
+    private String APIserver = "https://38987012.servicio-online.net/";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,9 +35,9 @@ public class ConsultaActivity extends AppCompatActivity {
         EditText txtidRegistro = findViewById(R.id.txtIdRegistro);
         if (txtidRegistro.length() > 0) {
             Integer id = Integer.parseInt(txtidRegistro.getText().toString());
-            new PruebaJson().execute("obtenermatriculas.php?id=" + id);
+            new PruebaJson().execute("https://www.proyectomatriculas.com?id=" + id);
         } else {
-            new PruebaJson().execute("get-list-products.php");
+            new PruebaJson().execute("https://www.proyectomatriculas.com");
         }
     }
 

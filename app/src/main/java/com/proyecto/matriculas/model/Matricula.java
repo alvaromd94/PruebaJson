@@ -9,7 +9,7 @@ public class Matricula {
     private String fecha;
     private String matricula;
 
-    public Matricula() {
+    public Matricula(int idUsuario, String nombreUsuario, String claveUsuario) {
         this.idRegistro = null;
         this.infraccion = "";
         this.fecha = "";
