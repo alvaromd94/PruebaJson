@@ -23,7 +23,7 @@ import java.util.List;
 
 public class ConsultaActivity extends AppCompatActivity {
 
-    private String APIserver = "https://38987012.servicio-online.net/";
+    private String APIserver = "http://proyectomatriculas.com/proyecto/";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,9 +35,9 @@ public class ConsultaActivity extends AppCompatActivity {
         EditText txtidRegistro = findViewById(R.id.txtIdRegistro);
         if (txtidRegistro.length() > 0) {
             Integer id = Integer.parseInt(txtidRegistro.getText().toString());
-            new PruebaJson().execute("https://www.proyectomatriculas.com?id=" + id);
+            new PruebaJson().execute("busqueda.php?id=" + id);
         } else {
-            new PruebaJson().execute("https://www.proyectomatriculas.com");
+            new PruebaJson().execute("busqueda.php");
         }
     }
 
@@ -73,10 +73,11 @@ public class ConsultaActivity extends AppCompatActivity {
                     List<Matricula> lst = new ArrayList<Matricula>();
                     for (int i = 0; i < response.length(); i++) {
                         lst.add(new Matricula(
-                                response.getJSONObject(i).getInt("idRegistro")
-                                , response.getJSONObject(i).getString("infraccion")
-                                , response.getJSONObject(i).getString("fecha")
-                                , response.getJSONObject(i).getString("matricula")
+                                response.getJSONObject(i).getInt("N_Registro")
+                                , response.getJSONObject(i).getString("Infraccion")
+                                , response.getJSONObject(i).getString("Fecha_Infraccion")
+                                , response.getJSONObject(i).getString("N_Matricula")
+                                , response.getJSONObject(i).getString("IDPropietariosFK")
                         ));
                     }
 

@@ -16,7 +16,7 @@ public class Matricula {
         this.matricula = "";
     }
 
-    public Matricula(Integer idRegistro, String infraccion, String fecha, String matricula) {
+    public Matricula(Integer idRegistro, String string, String infraccion, String fecha, String matricula) {
         this.idRegistro = idRegistro;
         this.infraccion = infraccion;
         this.fecha = fecha;

@@ -28,7 +28,7 @@ import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private String APIserver = "https://proyectomatriculas.com/";
+    private String APIserver = "http://38987012.servicio-online.net/proyecto/";
 
     EditText editTextUsuario;
     EditText editTextPassword;
@@ -90,9 +90,9 @@ public class LoginActivity extends AppCompatActivity {
                     List<Matricula> lst = new ArrayList<Matricula>();
                     for (int i = 0; i < response.length(); i++) {
                         lst.add(new Matricula(
-                                response.getJSONObject(i).getInt("idUsuario")
-                                , response.getJSONObject(i).getString("nombreUsuario")
-                                , response.getJSONObject(i).getString("claveUsuario")
+                                response.getJSONObject(i).getInt("IDUsuario")
+                                , response.getJSONObject(i).getString("Usuario")
+                                , response.getJSONObject(i).getString("Contrasena")
 
                         ));
                     }
