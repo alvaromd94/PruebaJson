@@ -11,6 +11,7 @@ import android.os.AsyncTask;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.proyecto.matriculas.model.Matricula;
 
@@ -57,6 +58,14 @@ public class LoginActivity extends AppCompatActivity {
         editTextUsuario.setText("");
         editTextPassword.setText("");
         //startActivity(new Intent(getApplicationContext(), ConsultaActivity.class));
+    }
+    public void meterMatricula(View view)
+    {
+        DB db= new DB(getApplicationContext(),null,null,1);
+        String nombre = editTextUsuario.getText().toString();
+        String apellido = editTextPassword.getText().toString();
+        String mensaje =db.guardar(nombre, apellido);
+        Toast.makeText(getApplicationContext(),mensaje,Toast.LENGTH_SHORT).show();
     }
     private class PruebaJson extends AsyncTask<String, Void, Boolean> {
 

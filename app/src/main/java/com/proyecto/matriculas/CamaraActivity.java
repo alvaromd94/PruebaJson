@@ -16,7 +16,10 @@ import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.text.TextBlock;
@@ -26,8 +29,9 @@ import java.io.IOException;
 public class CamaraActivity extends AppCompatActivity {
 
     SurfaceView mCameraView;
-    TextView mTextView;
     CameraSource mCameraSource;
+    EditText text_view;
+
 
     private static final String TAG = "CameraActivity";
     private static final int requestPermissionID = 101;
@@ -38,7 +42,7 @@ public class CamaraActivity extends AppCompatActivity {
         setContentView(R.layout.activity_camara);
 
         mCameraView = findViewById(R.id.surfaceView);
-        mTextView = findViewById(R.id.text_view);
+        text_view = findViewById(R.id.text_view);
 
         startCameraSource();
     }
@@ -143,7 +147,7 @@ public class CamaraActivity extends AppCompatActivity {
                     final SparseArray<TextBlock> items = detections.getDetectedItems();
                     if (items.size() != 0 ){
 
-                        mTextView.post(new Runnable() {
+                        text_view.post(new Runnable() {
                             @Override
                             public void run() {
                                 StringBuilder stringBuilder = new StringBuilder();
@@ -152,7 +156,7 @@ public class CamaraActivity extends AppCompatActivity {
                                     stringBuilder.append(item.getValue());
                                     stringBuilder.append("\n");
                                 }
-                                mTextView.setText(stringBuilder.toString());
+                                text_view.setText(stringBuilder.toString());
                             }
                         });
                     }
@@ -163,5 +167,13 @@ public class CamaraActivity extends AppCompatActivity {
 
     public void clickLista(View view) {
         startActivity(new Intent(getApplicationContext(), MatriculasActivity.class));
+    }
+    public void consultaBD(View view)
+    {
+        DB db = new DB(getApplicationContext(),null,null,1);
+        String buscar = text_view.getText().toString();
+        String[] datos;
+        datos=db.buscar_reg(buscar.trim());
+        Toast.makeText(getApplicationContext(),datos[2],Toast.LENGTH_SHORT).show();
     }
 }

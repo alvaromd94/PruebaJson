@@ -13,23 +13,20 @@
         android:layout_height="0dp"
         android:layout_weight="4" />
 
-    <TextView
+    <EditText
         android:id="@+id/text_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="8dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:text="@string/txt_message"
-        android:textColor="@android:color/black"
-        android:textSize="20sp" />
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:digits="abcdefghijklmnopqrstuvwxyz1234567890"
+        android:inputType="textPersonName"
+         />
 
     <Button
         android:id="@+id/Consulta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="clickLista"
+        android:onClick="consultaBD"
         android:text="Consulta" />
 
 </LinearLayout>
