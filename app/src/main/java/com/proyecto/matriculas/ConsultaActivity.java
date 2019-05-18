@@ -77,7 +77,7 @@ public class ConsultaActivity extends AppCompatActivity {
                                 , response.getJSONObject(i).getString("Infraccion")
                                 , response.getJSONObject(i).getString("Fecha_Infraccion")
                                 , response.getJSONObject(i).getString("N_Matricula")
-                                , response.getJSONObject(i).getString("IDPropietariosFK")
+                                , response.getJSONObject(i).getInt("IDPropietariosFK")
                         ));
                     }
 

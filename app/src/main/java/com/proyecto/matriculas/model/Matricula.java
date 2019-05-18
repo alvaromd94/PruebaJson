@@ -4,64 +4,72 @@ package com.proyecto.matriculas.model;
 
 public class Matricula {
 
-    private Integer idRegistro;
-    private String infraccion;
-    private String fecha;
-    private String matricula;
+    private Integer N_Registro;
+    private String Infraccion;
+    private String Fecha_Infraccion;
+    private String N_Matricula;
+    private Integer IDPropietariosFK;
 
-    public Matricula(int idUsuario, String nombreUsuario, String claveUsuario) {
-        this.idRegistro = null;
-        this.infraccion = "";
-        this.fecha = "";
-        this.matricula = "";
+    public Matricula() {
+        this.N_Registro = null;
+        this.Infraccion = "";
+        this.Fecha_Infraccion = "";
+        this.N_Matricula = "";
+        this.IDPropietariosFK = null;
     }
 
-    public Matricula(Integer idRegistro, String string, String infraccion, String fecha, String matricula) {
-        this.idRegistro = idRegistro;
-        this.infraccion = infraccion;
-        this.fecha = fecha;
-        this.matricula = matricula;
+    public Matricula(Integer N_Registro,  String Infraccion, String Fecha_Infraccion, String N_Matricula, Integer IDPropietariosFK) {
+        this.N_Registro = N_Registro;
+        this.Infraccion = Infraccion;
+        this.Fecha_Infraccion = Fecha_Infraccion;
+        this.N_Matricula = N_Matricula;
+        this.IDPropietariosFK = IDPropietariosFK;
     }
 
-    public Integer getIdRegistro() {
-        return idRegistro;
+    public Integer getN_Registro() {
+        return N_Registro;
     }
 
-    public void setIdRegistro(Integer idRegistro) {
-        this.idRegistro = idRegistro;
+    public void setN_Registro(Integer N_Registro) {
+        this.N_Registro = N_Registro;
     }
 
     public String getInfraccion() {
-        return infraccion;
+        return Infraccion;
     }
 
-    public void setInfraccion(String infraccion) {
-        this.infraccion = infraccion;
+    public void setInfraccion(String Infraccion) {
+        this.Infraccion = Infraccion;
     }
 
-    public String getFecha() {
-        return fecha;
+    public String getFecha_Infraccion() {
+        return Fecha_Infraccion;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
+    public void setFecha_Infraccion(String Fecha_Infraccion) { this.Fecha_Infraccion = Fecha_Infraccion; }
+
+    public String getN_Matricula() {
+        return N_Matricula;
     }
 
-    public String getMatricula() {
-        return matricula;
+    public void setN_Matricula(String N_Matricula) {
+        this.N_Matricula = N_Matricula;
     }
 
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
+    public Integer getIDPropietariosFK() {
+        return IDPropietariosFK;
     }
+
+    public void setIDPropietariosFK(Integer IDPropietariosFK) { this.IDPropietariosFK = IDPropietariosFK; }
 
     @Override
     public String toString() {
         return "Matricula {" +
-                "idRegistro=" + idRegistro +
-                ", infraccion='" + infraccion + '\'' +
-                ", fecha=" + fecha +
-                ", matricula='" + matricula + '\'' +
+                "N_Registro=" + N_Registro +
+                ", Infraccion='" + Infraccion + '\'' +
+                ", Fecha_Infraccion=" + Fecha_Infraccion +
+                ", N_Matricula='" + N_Matricula + '\'' +
+                ", matricula='" + IDPropietariosFK + '\'' +
                 '}';
     }
 }

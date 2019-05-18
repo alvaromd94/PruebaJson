@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,12 +15,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.proyecto.matriculas.model.Matricula;
+import com.proyecto.matriculas.model.Usuarios;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -33,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText editTextUsuario;
     EditText editTextPassword;
+    Button btnInicio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
 
         editTextUsuario =  findViewById(R.id.editTextUsuario);
         editTextPassword =  findViewById(R.id.editTextPassword);
+        btnInicio = findViewById(R.id.btnInicio);
     }
     public void cickInicio(View view) {
         //  if (editTextUsuario.length() > 0) {
@@ -50,15 +55,16 @@ public class LoginActivity extends AppCompatActivity {
             //   new ConsultaActivity.PruebaJson().execute("get-list-products.php");
             //   }
 //
+        new PruebaJson().execute("get-login.php?user=" + editTextUsuario.getText().toString() + "&password=" + editTextPassword.getText().toString());
         startActivity(new Intent(getApplicationContext(), MenuPrincipalActivity.class));
     }
 
 
-    public void cickLimpiar(View view) {
-        editTextUsuario.setText("");
-        editTextPassword.setText("");
-        //startActivity(new Intent(getApplicationContext(), ConsultaActivity.class));
-    }
+   // public void cickLimpiar(View view) {
+   //     editTextUsuario.setText("");
+   //     editTextPassword.setText("");
+   //     //startActivity(new Intent(getApplicationContext(), ConsultaActivity.class));
+   // }
     public void meterMatricula(View view)
     {
         DB db= new DB(getApplicationContext(),null,null,1);
@@ -67,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
         String mensaje =db.guardar(nombre, apellido);
         Toast.makeText(getApplicationContext(),mensaje,Toast.LENGTH_SHORT).show();
     }
-    private class PruebaJson extends AsyncTask<String, Void, Boolean> {
+    public class PruebaJson extends AsyncTask<String, Void, Boolean> {
 
         private String json;
 
@@ -96,28 +102,21 @@ public class LoginActivity extends AppCompatActivity {
                 if (isOk) {
                     JSONArray response = new JSONArray(json);
 
-                    List<Matricula> lst = new ArrayList<Matricula>();
+                    List<Usuarios> lst = new ArrayList<Usuarios>();
                     for (int i = 0; i < response.length(); i++) {
-                        lst.add(new Matricula(
-                                response.getJSONObject(i).getInt("IDUsuario")
+                        lst.add(new Usuarios(
+                                (int) response.getJSONObject(i).getLong("IDUsuario")
                                 , response.getJSONObject(i).getString("Usuario")
                                 , response.getJSONObject(i).getString("Contrasena")
-
                         ));
                     }
-
-                    StringBuilder result = new StringBuilder();
-                    for (Matricula p : lst) {
-                        result.append(p.toString() + "\n");
-                    }
-
-                    TextView txtResult = findViewById(R.id.txtResult);
-                    txtResult.setText(result);
                 }
 
-            } catch (Exception e) {
-                System.out.println("FALLO: " + e.getMessage());
+            } catch (JSONException e1) {
+                e1.printStackTrace();
             }
+
         }
     }
 }
+
