@@ -3,6 +3,7 @@ package com.proyecto.matriculas;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,22 +33,33 @@ import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private String APIserver = "http://38987012.servicio-online.net/proyecto/";
+    private String APIserver = "https://proyectomatriculas.com/proyecto/";
 
     EditText editTextUsuario;
     EditText editTextPassword;
     Button btnInicio;
+    Intent menuPrincipal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        menuPrincipal = new Intent(this, MenuPrincipalActivity.class);
         editTextUsuario =  findViewById(R.id.editTextUsuario);
         editTextPassword =  findViewById(R.id.editTextPassword);
         btnInicio = findViewById(R.id.btnInicio);
+
+    btnInicio.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            new PruebaJson().execute("login.php?Usuario=" + editTextUsuario.getText().toString() + "&Contrasena=" + editTextPassword.getText().toString());
+        }
+    });
     }
-    public void cickInicio(View view) {
+
+
+  //  public void cickInicio(View view) {
         //  if (editTextUsuario.length() > 0) {
             //     Integer id = Integer.parseInt(editTextUsuario.getText().toString());
             //    new ConsultaActivity.PruebaJson().execute("obtenermatriculas.php?id=" + id);
@@ -55,10 +67,9 @@ public class LoginActivity extends AppCompatActivity {
             //   new ConsultaActivity.PruebaJson().execute("get-list-products.php");
             //   }
 //
-        new PruebaJson().execute("get-login.php?user=" + editTextUsuario.getText().toString() + "&password=" + editTextPassword.getText().toString());
-        startActivity(new Intent(getApplicationContext(), MenuPrincipalActivity.class));
-    }
-
+  //      new PruebaJson().execute("login.php?Usuario=" + editTextUsuario.getText().toString() + "&Contrasena=" + editTextPassword.getText().toString());
+        //startActivity(new Intent(getApplicationContext(), MenuPrincipalActivity.class));
+  //  }
 
    // public void cickLimpiar(View view) {
    //     editTextUsuario.setText("");
@@ -72,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
         String apellido = editTextPassword.getText().toString();
         String mensaje =db.guardar(nombre, apellido);
         Toast.makeText(getApplicationContext(),mensaje,Toast.LENGTH_SHORT).show();
+
     }
     public class PruebaJson extends AsyncTask<String, Void, Boolean> {
 
@@ -97,25 +109,31 @@ public class LoginActivity extends AppCompatActivity {
             return true;
         }
 
-        protected void onPostExecute(Boolean isOk) {
+        protected void onPostExecute(Boolean inicioCorrecto) {
             try {
-                if (isOk) {
+                if (inicioCorrecto) {
                     JSONArray response = new JSONArray(json);
 
-                    List<Usuarios> lst = new ArrayList<Usuarios>();
+                    List<Usuarios> lista = new ArrayList<Usuarios>();
                     for (int i = 0; i < response.length(); i++) {
-                        lst.add(new Usuarios(
-                                (int) response.getJSONObject(i).getLong("IDUsuario")
+                        lista.add(new Usuarios(
+                                response.getJSONObject(i).getInt("IDUsuario")
                                 , response.getJSONObject(i).getString("Usuario")
                                 , response.getJSONObject(i).getString("Contrasena")
                         ));
                     }
+                    if(!lista.isEmpty())
+                    {
+                        startActivity(menuPrincipal);
+                        finish();
+                        Toast.makeText(getApplicationContext(),"Usuario correcto",Toast.LENGTH_SHORT).show();
+                        //System.out.println("Ha entrado");
+                        //Log.i("datos", "Se escribe:" + usuarios.get(0).getIDUsuario());
+                    }
                 }
-
-            } catch (JSONException e1) {
-                e1.printStackTrace();
+            } catch (JSONException e) {
+                System.out.println("FALLO: " + e.getMessage());
             }
-
         }
     }
 }

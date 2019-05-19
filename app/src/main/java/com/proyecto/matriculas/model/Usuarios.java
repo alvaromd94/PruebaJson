@@ -6,7 +6,7 @@ public class Usuarios {
     private String Usuario;
     private String Contrasena;
 
-    public Usuarios(int IDUsuario, String Usuario, String Contrasena) {
+    public Usuarios() {
         this.IDUsuario = null;
         this.Usuario = "";
         this.Contrasena = "";
