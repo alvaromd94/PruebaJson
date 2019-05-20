@@ -39,6 +39,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText editTextPassword;
     Button btnInicio;
     Intent menuPrincipal;
+   // String usuario = editTextUsuario.getText().toString();
+    //String contrasena = editTextPassword.getText().toString();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,8 @@ public class LoginActivity extends AppCompatActivity {
     btnInicio.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            new PruebaJson().execute("login.php?Usuario=" + editTextUsuario.getText().toString() + "&Contrasena=" + editTextPassword.getText().toString());
+            new PruebaJson().execute("login.php?Usuario=" + "'" + editTextUsuario.getText().toString() + "'" + "&Contrasena=" +  "'" + editTextPassword.getText().toString() + "'");
+
         }
     });
     }
@@ -126,9 +129,13 @@ public class LoginActivity extends AppCompatActivity {
                     {
                         startActivity(menuPrincipal);
                         finish();
-                        Toast.makeText(getApplicationContext(),"Usuario correcto",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.inicioOk),  Toast.LENGTH_LONG).show();
                         //System.out.println("Ha entrado");
                         //Log.i("datos", "Se escribe:" + usuarios.get(0).getIDUsuario());
+                    }
+                    else{
+
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.inicioNoOk),  Toast.LENGTH_LONG).show();
                     }
                 }
             } catch (JSONException e) {

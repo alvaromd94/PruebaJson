@@ -23,4 +23,6 @@
         <item>@string/alertaCuatro</item>
         <item>@string/alertaCinco</item>
     </string-array>
+    <string name="inicioOk">Ha iniciado sesión correctamente</string>
+    <string name="inicioNoOk">Usuario y/o contraseña incorrecto</string>
 </resources>
