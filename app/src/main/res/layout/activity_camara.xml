@@ -18,9 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:digits="abcdefghijklmnopqrstuvwxyz1234567890"
-        android:inputType="textPersonName"
-         />
+        android:inputType="text" />
 
     <Button
         android:id="@+id/Consulta"

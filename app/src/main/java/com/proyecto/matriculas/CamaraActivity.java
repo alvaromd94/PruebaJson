@@ -4,25 +4,24 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.menu.MenuBuilder;
 import android.util.Log;
-import android.util.SparseArray;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.vision.CameraSource;
-import com.google.android.gms.vision.Detector;
-import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 import java.io.IOException;
 
@@ -31,18 +30,24 @@ public class CamaraActivity extends AppCompatActivity {
     SurfaceView mCameraView;
     CameraSource mCameraSource;
     EditText text_view;
+    Button Consulta;
+
 
 
     private static final String TAG = "CameraActivity";
     private static final int requestPermissionID = 101;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camara);
-
         mCameraView = findViewById(R.id.surfaceView);
+        Consulta = findViewById(R.id.Consulta);
         text_view = findViewById(R.id.text_view);
+
+
+
 
         startCameraSource();
     }
@@ -133,15 +138,12 @@ public class CamaraActivity extends AppCompatActivity {
             });
 
             //Set the TextRecognizer's Processor.
-            textRecognizer.setProcessor(new Detector.Processor<TextBlock>() {
+          /*  textRecognizer.setProcessor(new Detector.Processor<TextBlock>() {
                 @Override
                 public void release() {
                 }
 
-                /**
-                 * Detect all the text from camera using TextBlock and the values into a stringBuilder
-                 * which will then be set to the textView.
-                 * */
+
                 @Override
                 public void receiveDetections(Detector.Detections<TextBlock> detections) {
                     final SparseArray<TextBlock> items = detections.getDetectedItems();
@@ -161,19 +163,41 @@ public class CamaraActivity extends AppCompatActivity {
                         });
                     }
                 }
-            });
+            });*/
         }
     }
 
     public void clickLista(View view) {
         startActivity(new Intent(getApplicationContext(), MatriculasActivity.class));
     }
+
+
+
+
     public void consultaBD(View view)
     {
+
         DB db = new DB(getApplicationContext(),null,null,1);
         String buscar = text_view.getText().toString();
         String[] datos;
         datos=db.buscar_reg(buscar.trim());
-        Toast.makeText(getApplicationContext(),datos[2],Toast.LENGTH_SHORT).show();
+        db.infraccion(buscar.trim());
+
+        if(datos[2] =="Encontrado")
+        {
+
+            App.matricula=buscar;
+            startActivity(new Intent(getApplicationContext(), MatriculasActivity.class));
+            Toast.makeText(getApplicationContext(),datos[2],Toast.LENGTH_SHORT).show();
+
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(),datos[2],Toast.LENGTH_SHORT).show();
+
+        }
+
     }
+
+
 }
